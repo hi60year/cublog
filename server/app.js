@@ -1,6 +1,5 @@
 import Koa from "koa2";
 import controller from "./src/controller/controller.js";
-import "./src/config/mysql_config.js";
 import "reflect-metadata";
 import { createConnection } from "typeorm";
 import mysql_config from "./src/config/mysql_config.js";

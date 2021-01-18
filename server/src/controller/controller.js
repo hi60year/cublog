@@ -1,5 +1,5 @@
-import koa_router from "koa-router";
-const controller = new koa_router();
+import KoaRouter from "koa-router";
+const controller = new KoaRouter();
 
 // 从子router中读取router
 import index from "./router/index.js";
