@@ -1,5 +1,5 @@
-import koa_router from "koa-router";
-const index = new koa_router();
+import KoaRouter from "koa-router";
+const index = new KoaRouter();
 
 // 导入service
 import indexService from "../../service/index.js";
