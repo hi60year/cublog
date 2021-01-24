@@ -1,15 +1,20 @@
 <template>
-  <q-page class="flex flex-center">
-    <img alt="Quasar logo" src="../assets/logo.png">
+  <q-page class="column items-center justify-center">
+    <img alt="Quasar logo" src="../assets/logo.png" class="col-auto">
   </q-page>
 </template>
 
-<style>
+<style lang="scss">
+  .col-auto{
+    height: 30px;
+    width: 30px;
+  }
 </style>
 
 <script>
 export default {
-  name: 'Introduction'
+  name: 'Introduction',
+  components: {
+  }
 }
 </script>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             
