@@ -8,7 +8,7 @@
                      :href="link.href" rel="noopener" target="_blank" text-color="primary" size="xs">{{link.name}}</q-btn>
                 </div>
                 <center><a class="col-auto" href="https://github.com/cv1002/cublog" rel="noopener" target="_blank">
-                    <img class="logo" src="./github.svg" alt="github"/>
+                    <img class="logo" src="./github-black.svg" alt="github"/>
                 </a></center>
                 <div class="col row justify-start items-center" style="margin-left:40px">
                     <q-btn type="a" flat no-caps
