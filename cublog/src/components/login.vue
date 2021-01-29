@@ -10,7 +10,7 @@
                 <q-btn color="primary" style="margin-top:30px; letter-spacing: 5px" type="submit">登陆</q-btn>
             </div>
             <div id="to_register" class="column" style="display:inline-block">
-                还没有账号？ <router-link to="/register">注册一个新账号</router-link>
+                还没有账号？ <router-link to="/main/register">注册一个新账号</router-link>
             </div>
         </center>
         <ErrorDialog title="密码错误" ref="password_error">
