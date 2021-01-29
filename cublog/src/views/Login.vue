@@ -1,7 +1,7 @@
 
 <template>
   <q-layout view="hHh lpR fff">
-
+    <Header/>
     <q-page-container>
       <router-view />
     </q-page-container>
@@ -15,6 +15,7 @@
 <script>
 import Footer from '../components/footer/page-footer.vue'
 import Login from '../components/login.vue'
+import Header from '../components/page-header.vue'
 
 export default {
   data () {
@@ -23,7 +24,8 @@ export default {
   },
   components: {
       Footer,
-      Login
+      Login,
+      Header
   }
 }
 </script>

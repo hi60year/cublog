@@ -8,7 +8,7 @@
           cublog
         </q-toolbar-title>
           <div class="q-gutter-md">
-            <q-btn id="register" type="a" href="" md color="primary" border-rounded unelevated padding="xs lg">
+            <q-btn id="register" type="router-link" to="/main/register" md color="primary" border-rounded unelevated padding="xs lg">
               注册
             </q-btn>
             <q-btn id="login" type="router-link" to="/login" target="_top" md color="grey-7" border-rounded unelevated padding="xs lg">

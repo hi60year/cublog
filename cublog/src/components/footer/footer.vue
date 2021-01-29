@@ -44,7 +44,7 @@
         data () {
             return {
                 outer_links : [{name : "License", href : "https://github.com/cv1002/cublog/blob/main/LICENSE"},
-                               {name : "About", href : ""},
+                               {name : "About", href : "https://github.com/cv1002/cublog/blob/main/README.md"},
                                {name : "Help", href:""},
                                {name : "Contact us", href:""}]
             }

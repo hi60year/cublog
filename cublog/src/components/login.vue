@@ -6,8 +6,11 @@
             <div id="content" class="column justify-center shadow-3">
                 <q-input class="input" outlined label="用户名" v-model="username" dense></q-input>
                 <q-input class="input" outlined label="密码" v-model="password" dense type="password"></q-input>
-                <a style="text-align:right; text-decoration:none" href="" target="_top">忘记密码？</a>
+                <a style="text-align:right" href="" target="_top">忘记密码？</a>
                 <q-btn color="primary" style="margin-top:30px; letter-spacing: 5px" type="submit">登陆</q-btn>
+            </div>
+            <div id="to_register" class="column" style="display:inline-block">
+                还没有账号？ <router-link to="/register">注册一个新账号</router-link>
             </div>
         </center>
         <ErrorDialog title="密码错误" ref="password_error">
@@ -39,7 +42,17 @@
         margin: 30px 0px 0px 0px;
     }
     a {
-        color: rgb(22, 162, 228)
+        color: rgb(22, 162, 228);
+        text-decoration: none
+    }
+    #to_register {
+        margin-top:20px;
+        border-style:solid;
+        border-width:thin;
+        border-radius:5px;
+        border-color:rgb(175, 175, 175);
+        width:350px;
+        padding: 15px 0px 15px 0px
     }
 </style>
 
