@@ -36,7 +36,15 @@
                     :done="step > 2"
                 >
                     一封带有验证码的邮件已经被发送至您的邮箱：{{email}}，请注意查收。填入验证码以继续。
-                    <q-input outlined v-model="email_captcha" label="验证码" type="text" dense class="input_section"/>  
+                    <q-input outlined v-model="email_captcha" label="验证码" type="text" dense class="input_section"/>
+                    <br>
+                    未收到邮件？点击右边的按钮重新发送
+                    <q-btn unelevated
+                           color="secondary"
+                           :disable="!resend_email_enabled"
+                           :label="resend_email_enabled ? '重发邮件' : `等待${resend_email_counter}秒后重发`"
+                           @click="resend()"
+                           style="margin-left:20px" />
                 </q-step>
             
                 <q-step
@@ -59,8 +67,11 @@
         
                 <template v-slot:navigation>
                     <q-stepper-navigation>
-                    <q-btn @click="continue_step()" :loading="loading_btn_next" color="primary" :label="step === 4 ? '开始您的cublog之旅！' : '继续'"></q-btn>
-                    <q-btn v-if="step > 1" flat color="primary" @click="$refs.stepper.previous()" label="后退" class="q-ml-sm"></q-btn>
+                    <q-btn @click="continue_step()"
+                           :loading="loading_btn_next"
+                           color="primary"
+                           :label="step === 4 ? '开始您的cublog之旅！' : '继续'"
+                           padding="xs lg"></q-btn>
                     </q-stepper-navigation>
                 </template>
             </q-stepper>
@@ -85,6 +96,8 @@
 </style>
 
 <script>
+const RESEND_CD = 30;
+
 export default {
     name: 'register',
     data () {
@@ -96,7 +109,10 @@ export default {
             email: '',
             unable_to_continue_step1: false,
             loading_btn_next: false,
-            email_captcha: ''
+            email_captcha: '',
+            resend_email_enabled: false,
+            resend_email_counter: RESEND_CD
+            
         }
     },
     methods: {
@@ -124,6 +140,8 @@ export default {
               ].every(x => x === true)) {
                   this.loading_btn_next = false;
                   this.$refs.stepper.next();
+                  //启用下一页的倒计时
+                  this.resend_email_count();
                   this.loading_btn_next = false;
                   return
               } else {
@@ -133,6 +151,17 @@ export default {
               }}, 1000)
           }
           else this.$refs.stepper.next()
+      },
+      resend_email_count() {
+          let interval = setInterval(() => {
+              if (this.resend_email_counter > 0) this.resend_email_counter--;
+              else {this.resend_email_enabled = true; clearInterval(interval)}
+          }, 1000);
+      },
+      resend() {
+          this.resend_email_enabled = false;
+          this.resend_email_counter = RESEND_CD;
+          this.resend_email_count();
       }
     }
 }
