@@ -1,5 +1,5 @@
 <template>
-    <q-page :style-fn="myTweak" padding>
+    <q-page :style-fn="myTweak" padding class="bg-grey-3">
         <center>
             <img class="logo" src="https://cdn.quasar.dev/logo/svg/quasar-logo.svg">
             <h5>登陆到 cublog</h5>

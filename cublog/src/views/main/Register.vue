@@ -1,5 +1,5 @@
 <template>
-    <q-page :style-fn="myTweak" padding class="column justify-start items-center">
+    <q-page padding class="column justify-start items-center bg-grey-3">
         <h4 style="letter-spacing:5px">注册cublog账号</h4>
         <div style="width:700px">
             <q-stepper
@@ -26,9 +26,10 @@
                              :rules="[required_field_checker]" lazy-rules/>
                     确认密码
                     <q-input outlined v-model="password_confirm" type="password" dense class="input_section"
-                             :rules="[required_field_checker, repeat_password_checker]" lazy-rules/>                
+                             :rules="[required_field_checker, repeat_password_checker]" lazy-rules  @keyup.enter="$refs.continue.click()"/>
                 </q-step>
-            
+
+                <!-- TODO: 在错误验证码情况下拒绝继续 -->
                 <q-step
                     :name="2"
                     title="验证邮箱"
@@ -36,7 +37,7 @@
                     :done="step > 2"
                 >
                     一封带有验证码的邮件已经被发送至您的邮箱：{{email}}，请注意查收。填入验证码以继续。
-                    <q-input outlined v-model="email_captcha" label="验证码" type="text" dense class="input_section"/>
+                    <q-input outlined v-model="email_captcha" label="验证码" type="text" dense class="input_section" @keyup.enter="$refs.continue.click()"/>
                     <br>
                     未收到邮件？点击右边的按钮重新发送
                     <q-btn unelevated
@@ -71,7 +72,8 @@
                            :loading="loading_btn_next"
                            color="primary"
                            :label="step === 4 ? '开始您的cublog之旅！' : '继续'"
-                           padding="xs lg"></q-btn>
+                           padding="xs lg"
+                           ref="continue"></q-btn>
                     </q-stepper-navigation>
                 </template>
             </q-stepper>
