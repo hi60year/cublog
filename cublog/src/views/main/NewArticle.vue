@@ -106,84 +106,102 @@
           />
 
           <!-- 在这里可以折叠代码，因为这个editor它真的很大块 -->
-          <q-editor
-            v-if="edit_mode === 'ordinary'"
-            class="q-mt-lg markdown-body"
-            v-model="editor"
-            ref="article_editor"
-            :dense="$q.screen.lt.md"
-            style="min-height:600px"
-            @paste.native="(evt) => pasteCapture(evt)"
-            :definitions="{
-              insert_photo: {
-                tip: '插入一张图片',
-                icon: 'insert_photo',
-                handler: insert_photo,
-              },
-            }"
-            :toolbar="[
-              [
-                {
-                  label: $q.lang.editor.align,
-                  icon: $q.iconSet.editor.align,
-                  fixedLabel: true,
-                  options: ['left', 'center', 'right', 'justify'],
+          <form
+            autocorrect="off"
+            autocapitalize="off"
+            autocomplete="off"
+            spellcheck="false"
+          >
+            <q-editor
+              v-if="edit_mode === 'ordinary'"
+              class="q-mt-lg markdown-body"
+              v-model="editor"
+              ref="article_editor"
+              :dense="$q.screen.lt.md"
+              style="min-height:600px"
+              @paste.native="(evt) => pasteCapture(evt)"
+              :definitions="{
+                insert_photo: {
+                  tip: '插入一张图片',
+                  icon: 'insert_photo',
+                  handler: insert_photo,
                 },
-              ],
-              [
-                'bold',
-                'italic',
-                'strike',
-                'underline',
-                'subscript',
-                'superscript',
-              ],
-              ['hr', 'link', 'insert_photo'],
-              ['print', 'fullscreen'],
-              [
-                {
-                  label: $q.lang.editor.formatting,
-                  icon: $q.iconSet.editor.formatting,
-                  list: 'no-icons',
-                  options: ['p', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'code'],
-                },
-                {
-                  label: $q.lang.editor.fontSize,
-                  icon: $q.iconSet.editor.fontSize,
-                  fixedLabel: true,
-                  fixedIcon: true,
-                  list: 'no-icons',
-                  options: [
-                    'size-1',
-                    'size-2',
-                    'size-3',
-                    'size-4',
-                    'size-5',
-                    'size-6',
-                    'size-7',
-                  ],
-                },
-                'removeFormat',
-              ],
-              ['quote', 'unordered', 'ordered', 'outdent', 'indent'],
-              ['undo', 'redo'],
-            ]"
-          ></q-editor>
+              }"
+              :toolbar="[
+                [
+                  {
+                    label: $q.lang.editor.align,
+                    icon: $q.iconSet.editor.align,
+                    fixedLabel: true,
+                    options: ['left', 'center', 'right', 'justify'],
+                  },
+                ],
+                [
+                  'bold',
+                  'italic',
+                  'strike',
+                  'underline',
+                  'subscript',
+                  'superscript',
+                ],
+                ['hr', 'link', 'insert_photo'],
+                ['print', 'fullscreen'],
+                [
+                  {
+                    label: $q.lang.editor.formatting,
+                    icon: $q.iconSet.editor.formatting,
+                    list: 'no-icons',
+                    options: ['p', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'code'],
+                  },
+                  {
+                    label: $q.lang.editor.fontSize,
+                    icon: $q.iconSet.editor.fontSize,
+                    fixedLabel: true,
+                    fixedIcon: true,
+                    list: 'no-icons',
+                    options: [
+                      'size-1',
+                      'size-2',
+                      'size-3',
+                      'size-4',
+                      'size-5',
+                      'size-6',
+                      'size-7',
+                    ],
+                  },
+                  'removeFormat',
+                ],
+                ['quote', 'unordered', 'ordered', 'outdent', 'indent'],
+                ['undo', 'redo'],
+              ]"
+            ></q-editor>
+          </form>
 
           <center>
-            <textarea
-              v-if="edit_mode === 'markdown'"
-              contenteditable
-              style="user-modify: read-write-plaintext-only; border-radius: 5px; height: 500px; width:90%; caret-color:blue; 
-              font-family:Consolas; resize:none; border:none"
-              class="shadow-2 q-mt-lg q-py-md q-px-sm"
-              :value="md_input"
-              @input="md_edit_update"
+            <form
+              autocorrect="off"
+              autocapitalize="off"
+              autocomplete="off"
+              spellcheck="false"
             >
-            </textarea>
+              <textarea
+                v-if="edit_mode === 'markdown'"
+                contenteditable
+                style="user-modify: read-write-plaintext-only; border-radius: 5px; height: 500px; width:90%; caret-color:blue; 
+              font-family:Consolas; resize:none; border:none"
+                class="shadow-2 q-mt-lg q-py-md q-px-sm"
+                :value="md_input"
+                @input="md_edit_update"
+              >
+              </textarea>
+            </form>
           </center>
 
-          <div v-if="md_prev" v-html="compiledMarkdown" class="q-mt-lg markdown-body"></div>
+          <div
+            v-if="md_prev"
+            v-html="compiledMarkdown"
+            class="q-mt-lg markdown-body"
+          ></div>
         </div>
 
         <q-btn
@@ -297,8 +315,8 @@ code {
 <script>
 import events from "events";
 import _ from "lodash";
-import marked from "marked"
-import "github-markdown-css"
+import marked from "marked";
+import "github-markdown-css";
 
 export default {
   name: "newArticle",
@@ -357,7 +375,11 @@ export default {
       }
     },
 
-    md_edit_update(e){ _.debounce((e) => {this.md_input = e.target.value}, 300)(e)},
+    md_edit_update(e) {
+      _.debounce((e) => {
+        this.md_input = e.target.value;
+      }, 300)(e);
+    },
     /**
      * Capture the <CTL-V> paste event, only allow plain-text, no images.
      *

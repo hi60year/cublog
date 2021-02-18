@@ -52,7 +52,7 @@
           </q-item-section>
         </q-item>
 
-        <q-item clickable v-ripple>
+        <q-item clickable v-ripple :active="$route.path === '/main/notifications'" @click="$router.push({path: '/main/notifications'})">
           <q-item-section avatar>
             <q-icon name="inbox"></q-icon>
           </q-item-section>

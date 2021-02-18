@@ -6,6 +6,9 @@ import Main from '../views/main/main.vue'
 import Register from '../views/main/Register.vue'
 import Article from '../views/main/Article/Article.vue'
 import NewArticle from '../views/main/NewArticle.vue'
+import notifications from '../views/main/Notification.vue'
+import page404 from '../views/404.vue'
+import user from '../views/main/user.vue'
 
 Vue.use(VueRouter)
 
@@ -39,8 +42,23 @@ const routes = [
         path: 'new',
         name: 'newArticle',
         component: NewArticle
+      },
+      {
+        path: 'notifications',
+        name: 'notifications',
+        component: notifications
+      },
+      {
+        path: 'user',
+        name: 'user',
+        component: user
       }
     ]
+  },
+  {
+    path: '*',
+    name: '404',
+    component: page404
   }
 ]
 
